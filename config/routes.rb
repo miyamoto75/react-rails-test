@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ng/index'
+
   namespace :api do
     namespace :v1 do
       get 'clients/get'
