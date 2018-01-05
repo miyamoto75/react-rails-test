@@ -1,0 +1,76 @@
+<h1>Vue#index</h1>
+<p>Find me in app/views/vue/index.html.erb</p>
+
+<div class="col-md-6 col-md-offset-1">
+  <div id="app">
+    <p>{{ message }}</p>
+
+    <div class="row">
+      <h3>Number : {{ number }}</h3>
+      <button type="button" class="btn btn-success" v-on:click="incHandle">+1</button>
+      <button type="button" class="btn btn-danger"  v-on:click="decHandle()">-1</button>
+    </div>
+
+    <hr />
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-1">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="col-md-4 text-center">id</th>
+                <th class="col-md-4 text-center">name</th>
+                <th class="col-md-4 text-center">pref</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="client in clients">
+                <td class="col-md-4 text-center">{{ client.id }}</td>
+                <td class="col-md-4 text-center">{{ client.name }}</td>
+                <td class="col-md-4 text-center">{{ client.pref }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button type="button" class="btn btn-primary" v-on:click="getClient()">get client</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue!',
+      number: 10,
+      clients: [
+        {id: "x", name: 'initial', pref: "I"},
+      ],
+    },
+    methods: {
+      incHandle: function () {
+        this.number++;
+      },
+      decHandle: function () {
+        this.number--;
+      },
+
+      getClient: function () {
+        fetch("http://localhost:3000/api/v1/clients/get")
+          .then(res => res.json())
+          .then(
+            (result) => {
+              this.clients.push(result);
+            },
+            (error) => {
+            }
+          )
+      },
+
+    },
+  })
+</script>

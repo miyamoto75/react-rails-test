@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'vue/index'
+
   get 'ng/index'
 
   namespace :api do
