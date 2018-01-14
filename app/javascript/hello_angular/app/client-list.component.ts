@@ -1,4 +1,5 @@
 import { Component, Input, Output } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'client-list',
@@ -35,7 +36,15 @@ clients = [
 {id: "test", name: "testname", pref: "testpref"},
 ];
 
+  constructor(private http: HttpClient) {}
+
   getClient(): void {
+    var url = '/api/v1/clients/get';
+    this.http.get(url).subscribe(json => {
+      this.clients.push(json);
+      console.log(json)
+    }
+    );
 
   }
 
