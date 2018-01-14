@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ng2/index'
+
   get 'vue/index'
 
   get 'ng/index'
