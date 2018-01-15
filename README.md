@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+* add angular
+  - (need yarn, brew install yarn)
+  - add gem webpack
+  - exec. rails webpacker:install
+  - rails webpacker:install:angular
